@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Sign Up Page - Material Kit by Creative Tim</title>
+	<title>@yield('title', 'App Shop')</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -91,29 +91,29 @@
 	            <nav class="pull-left">
 	                <ul>
 	                    <li>
-	                        <a href="http://www.creative-tim.com">
-	                            Creative Tim
+	                        <a href="http://annihileitor.github.io">
+	                            Leonardo Placencia
 	                        </a>
 	                    </li>
 						<li>
-	                        <a href="http://presentation.creative-tim.com">
-	                           About Us
+	                        <a href="http://annihileitor.github.io">
+	                           Sobre mí
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="http://blog.creative-tim.com">
+	                        <a href="http://annihileitor.github.io">
 	                           Blog
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="http://www.creative-tim.com/license">
-	                            Licenses
+	                        <a href="http://annihileitor.github.io">
+	                            Licencias
 	                        </a>
 	                    </li>
 	                </ul>
 	            </nav>
 	            <div class="copyright pull-right">
-	                &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
+	                &copy; 2018, made with <i class="fa fa-heart heart"></i> by Leonardo Placencia
 	            </div>
 	        </div>
 	    </footer>
