@@ -41,25 +41,33 @@
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                @else
+                    <li class="nav-item dropdown">
+						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							{{ Auth::user()->name }} <span class="caret"></span>
+						</a>
+						
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar sesión') }}
-                                    </a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							@if (auth()->user()->admin)
+							<li>
+								<a href="{{ url('/admin/products') }}">Gestionar Productos</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+							</li>
+							@endif
+							<li>
+								<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+								{{ __('Cerrar sesión') }}
+								</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+								</form>
+							</li>							
+						</ul>
+					</li>
+				@endguest
 		        <!-- <li>
                     <a href="https://twitter.com/annihileitor" target="_blank" class="btn btn-simple btn-white btn-just-icon">
 					<i class="fa fa-twitter"></i>
