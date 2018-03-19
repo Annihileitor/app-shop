@@ -18,7 +18,22 @@
                     </div>
                 @endif
 
-                You are logged in!
+                <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                        <li>
+                            <a href="#dashboard" role="tab" data-toggle="tab">
+                                <i class="material-icons">dashboard</i>
+                                Carrito de Compras
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="#tasks" role="tab" data-toggle="tab">
+                                <i class="material-icons">list</i>
+                                Pedidos Realizados
+                            </a>
+                        </li>
+                    </ul>
+                                
 				
 
 			</div>

@@ -1916,7 +1916,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 }
 
 footer {
-  padding: 15px 0;
+  padding: 15px 0;  
 }
 footer ul {
   margin-bottom: 0;
@@ -1936,6 +1936,7 @@ footer ul li a {
   text-decoration: none;
   position: relative;
   display: block;
+  
 }
 footer ul li a:hover {
   text-decoration: none;
