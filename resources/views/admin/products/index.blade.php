@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Listado de productos')
-@section('body-class', 'landing-page')
+@section('body-class', 'product-page')
 
 
 @section('content')
@@ -12,113 +12,63 @@
 
 	<div class="main main-raised">
 		<div class="container">
-			<div class="section text-center section-landing">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<h2 class="title">¿Por qué App Shop</h2>
-						<h5 class="description">Puedes revisar nuestra relación completa de productos, comparar precios y realizar tus pedidos cuando estés seguro.</h5>
-					</div>
-				</div>
-
-				<div class="features">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="info">
-								<div class="icon icon-primary">
-									<i class="material-icons">chat</i>
-								</div>
-								<h4 class="info-title">Atendemos tus dudas</h4>
-								<p>Atendemos rápidamente cualquier consulta que tengas vía chat. No estás solo, sino que siempre estamos atentos a tus inquietudes.</p>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="info">
-								<div class="icon icon-success">
-									<i class="material-icons">verified_user</i>
-								</div>
-								<h4 class="info-title">Pago Seguro</h4>
-								<p>Todo pedido que realices será confirmado a través de una llamada. Si no confías en los pagos en línea puedes pagar contra entrega el valor actordado.</p>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="info">
-								<div class="icon icon-danger">
-									<i class="material-icons">fingerprint</i>
-								</div>
-								<h4 class="info-title">Información privada</h4>
-								<p>Los pedidos que realices solo los conocerás tú a través de tu panel de usuario.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			
 
 
 			<div class="section text-center">
-				<h2 class="title">Productos Disponibles</h2>
+				<h2 class="title">Listado de productos</h2>
 
 				<div class="team">
 					<div class="row">
-						@foreach ($products as $product)
-						<div class="col-md-4">
-							<div class="team-player">
-								<img src="{{ $product->images()->first()->image}}" alt="Imagen Producto" class="img-raised img-circle">
-								<h4 class="title">{{ $product->name }}<br />
-									<small class="text-muted">{{ $product->category->name }}
-									</small>
-								</h4>
-								<p class="description">{{ $product->description }}</p>
-								<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>
-								<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>
-								<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>
-							</div>
-						</div>
-						@endforeach               
+					<a href="{{ url('/admin/products/create') }}" class="btn btn-primary btn-round" >Nuevo Producto</a>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-center">#</th>
+									<th>Nombre</th>
+									<th>Descripción</th>
+									<th>Categoría</th>
+									<th class="text-right">Precio</th>
+									<th class="text-right">Opciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach ($products as $product )
+								<tr>
+									<td class="text-center">{{ $product->id}}</td>
+									<td>{{ $product->name}}</td>
+									<td class="col-md-4">{{ $product->description}}</td>
+									<td>{{ $product->category ? $product->category->name : 'General'}}</td>
+									<td class="text-right">&dollar; {{ $product->price }}</td>
+									<td class="td-actions text-right">
+										
+										<form method="POST" action="{{ url('/admin/products/'.$product->id.'/delete')}}">
+											{{ csrf_field() }}
+											<a type="button" rel="tooltip" title="Ver Producto" class="btn btn-info btn-simple btn-xs">
+												<i class="fa fa-info"></i>
+											</a>
+											<a href="{{ url('/admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Editar Producto" class="btn btn-success btn-simple btn-xs">
+												<i class="fa fa-edit"></i>
+											</a>
+											<button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
+												<i class="fa fa-times"></i>
+											</button>
+										</form>
+										
+									</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>	
+						
+						{{ $products->links() }}
 					</div>
 				</div>
 
 			</div>
 
 
-			<div class="section landing-section">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<h2 class="text-center title">¿Aún no te has registrado?</h2>
-						<h4 class="text-center description">Regístrate ingresando tus datos básicos y podrás realizar tus pedidos a través de nuestro carrito de compras. Si aún no te decides, de todas formas, con tu cuenta de usuario podrás hacer todas tus consultas sin compromiso.</h4>
-						<form class="contact-form">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group label-floating" >
-										<label class="control-label">Nombre</label>
-										<input type="email" class="form-control">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group label-floating">
-										<label class="control-label">Email</label>
-										<input type="email" class="form-control">
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group label-floating">
-								<label class="control-label">Mensaje</label>
-								<textarea class="form-control" rows="4"></textarea>
-							</div>
-
-							<div class="row">
-								<div class="col-md-4 col-md-offset-4 text-center">
-									<button class="btn btn-primary btn-raised">
-										Envíar Mensaje
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-
-			</div>
+			
 		</div>
 
 	</div>
